@@ -120,4 +120,4 @@ if rothdec == 'yes':
     ninc = round(ninc)
     print("For your annual investment to be 15% of your income, you'll need an income of ${:,}".format(ninc))
 
-print('\ntoodles')
+print('\nToodles')
