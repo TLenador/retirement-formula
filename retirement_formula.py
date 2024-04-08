@@ -8,7 +8,7 @@ def get_integer_input(prompt):
             value = int(value)
             return value
         except ValueError:
-            print('Please enter a valid integer.')
+            print('Please enter a valid number.')
 
 # Function for getting float input
 def get_positive_float_input(prompt):
@@ -17,7 +17,7 @@ def get_positive_float_input(prompt):
         try:
             value = float(value)
             if value <= 0:
-                print('Please enter a positive integer.')
+                print('Please enter a positive number.')
                 continue
             return value
         except ValueError:
@@ -39,7 +39,7 @@ def calculate_principal_needed(buyp, yrs, livinter):
 def calculate_future_principal(curprin, inv, perc):
     return curprin * (1 + perc)**3 + ((inv * ((1 + perc)**3-1)) / perc)
 
-buyp = get_integer_input('How much annual buying power do you want when you retire? ')
+buyp = get_integer_input('If you retired today, how much money do you think you would need each year? ')
 yrs = get_integer_input('How many years from now do you want to retire? ')
 inv = get_integer_input('How much money will you invest each year for the next three years? ')
 
@@ -50,10 +50,10 @@ print('Annual investment for three years: ${:,}'.format(inv))
 # Compound frequency
 incm = buyp * (1 + 0.03) ** yrs
 incm = round(incm)
-print('\nIncome needed in', yrs, 'years, considering an average of 3% annual inflation, is ${:,}'.format(incm))
+print('\nIncome needed in', yrs, 'years, considering an average annual inflation rate of 3%: ${:,}'.format(incm))
 
 # Custom percentage/how much to live on
-totinter = get_positive_float_input("\nHow much interest do you anticipate receiving during retirement? (If you're not sure, say 5) ")
+totinter = get_positive_float_input("\nHow much interest do you anticipate receiving during retirement? (If you're not sure, say 6) ")
 livinter = get_positive_float_input('How much interest do you plan on living on in retirement? (Recommended: 3 less than your total expected interest) ')
 
 totinter /= 100  # Convert to decimal
@@ -68,7 +68,7 @@ print("Principle needed to retire: ${:,}".format(prin))
 # Only Roth IRAs? All investments?
 curprin = get_integer_input('\nHow much do you already have invested in retirement accounts? ')
 taxcurprin = get_float_input("How much of your current retirement investments are NOT in a Roth account? ")
-perc = get_positive_float_input("What is your expected average interest rate of your investments? (If you're not sure, put 8) ")
+perc = get_positive_float_input("What average interest rate do you expect to receive on your investments? (If you're not sure, put 8) ")
 perc /= 100  # Convert to decimal
 
 # This figures out the curprin after 3 years of investments, assuming an average interest rate of perc
@@ -94,18 +94,19 @@ if newinv > peeproth:
 
 yrs = yrs + 3
 newinv = round(newinv)
-print('\nThis is your needed annual investment in three years: ${:,}'.format(newinv))
-print('This is how many years from now you will need to invest to reach your retirement goals:', yrs, 'years')
+print("\nYou will need to invest for", yrs, "years to reach your retirement goal.")
+print('Starting in three years, this is how much you will need to invest each year to reach your goal: ${:,}'.format(newinv))
+print("This will get you to your needed principle of ${:,}".format(prin), "for you to retire.")
 ninc = newinv / 0.15
 ninc = round(ninc)
-print("For your annual investment to be 15% of your income, you'll need an income of ${:,}".format(ninc))
+print("For your annual investment to be 15% of your income, in three years you'll need an income of ${:,}".format(ninc))
 
 try:
     if taxprin:
-        print("This is how much of your principle will be taxable: ${:,}".format(taxprin))
+        print("Upon retirement, this is how much of your principle will be taxable: ${:,}".format(taxprin))
 except: pass
 
-rothdec = input("\nWould you like to see how long you will need to invest for if you only invested in Roth accounts? (yes or no) ")
+rothdec = input("\nWould you like to see how long you will need to invest if you only invested in Roth accounts? (yes or no) ")
 if rothdec == 'yes':
     yrs = yrs - 3
     while newinv > peeproth:
@@ -114,10 +115,10 @@ if rothdec == 'yes':
         newinv = (perc * (prin - curprin * (1 + perc) ** yrs)) / ((1 + perc) ** yrs - 1)
     yrs = yrs + 3
     newinv = round(newinv)
-    print('\nThis is your needed annual investment in three years: ${:,}'.format(newinv))
-    print('This is how many years from now you will need to invest to reach your retirement goals:', yrs, 'years')
+    print("\nYou will need to invest for", yrs, "years to reach your retirement goal.")
+    print('Starting in three years, this is how much you will need to invest each year to reach your goal: ${:,}'.format(newinv))
     ninc = newinv / 0.15
     ninc = round(ninc)
-    print("For your annual investment to be 15% of your income, you'll need an income of ${:,}".format(ninc))
+    print("For your annual investment to be 15% of your income, in three years you'll need an income of ${:,}".format(ninc))
 
 print('\nToodles')
