@@ -53,13 +53,11 @@ incm = round(incm)
 print('\nIncome needed in', yrs, 'years, considering an average annual inflation rate of 3%: ${:,}'.format(incm))
 
 # Custom percentage/how much to live on
-totinter = get_positive_float_input("\nHow much interest do you anticipate receiving during retirement? (If you're not sure, say 6) ")
-livinter = get_positive_float_input('How much interest do you plan on living on in retirement? (Recommended: 3 less than your total expected interest) ')
+livinter = get_positive_float_input('\nHow much interest do you plan on living on in retirement? (Recommended: 4 [based on the "4% Rule"])')
 
-totinter /= 100  # Convert to decimal
 livinter /= 100  # Convert to decimal
 
-print('\nTotal interest is {:.1%} and living interest is {:.1%}'.format(totinter, livinter))
+print('\nThe amount of interest you will live on is {:.1%}'.format(livinter))
 
 # Principle needed to net the needed income using the living interest rate (livinter)
 prin = calculate_principal_needed(buyp, yrs, livinter)
