@@ -57,7 +57,7 @@ livinter = get_positive_float_input('\nHow much interest do you plan on living o
 
 livinter /= 100  # Convert to decimal
 
-print('\nThe amount of interest you will live on is {:.1%}'.format(livinter))
+print('\nThe amount of interest you plan to live on is {:.1%}'.format(livinter))
 
 # Principle needed to net the needed income using the living interest rate (livinter)
 prin = calculate_principal_needed(buyp, yrs, livinter)
