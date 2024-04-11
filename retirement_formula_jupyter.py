@@ -73,14 +73,13 @@ newinv = round(newinv)
 print('\nYou will need to invest for', yrs, 'years to reach your retirement goal.')
 print('Starting in three years, this is how much you will need to invest each year to reach your goal: ${:,}'.format(newinv))
 print("This will get you to your needed principle of ${:,}".format(prin),"for you to retire.")
-ninc = newinv / 0.15
-ninc = round(ninc)
-print("For your annual investment to be 15% of your income, in three years you'll need an income of ${:,}".format(ninc))
-
 try:
     if taxprin:
         print("Upon retirement, this is how much of your principle will be taxable: ${:,}".format(taxprin))
 except: pass
+ninc = newinv / 0.15
+ninc = round(ninc)
+print("For your annual investment to be 15% of your income, in three years you'll need an income of ${:,}".format(ninc))
 
 rothdec = input("\nWould you like to see how long you will need to invest if you only invested in Roth accounts? (yes or no) ")
 if rothdec == 'yes':
